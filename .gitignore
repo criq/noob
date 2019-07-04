@@ -1,0 +1,13 @@
+.DS_Store
+.git
+
+composer.phar
+composer.lock
+vendor/
+public/node_modules/
+public/package-lock.json
+
+.platform
+tmp/*
+logs/*
+files/*

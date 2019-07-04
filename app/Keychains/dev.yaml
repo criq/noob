@@ -1,0 +1,7 @@
+db:
+  app:
+    host: localhost
+    user: root
+    password: root
+    database: app
+    charset: UTF8
