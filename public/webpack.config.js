@@ -79,15 +79,6 @@ module.exports = [
 						},
 						{
 							loader: 'postcss-loader',
-							options: {
-								plugins: function () {
-									return [
-										require('precss'),
-										require('autoprefixer'),
-										require('cssnano'),
-									];
-								},
-							},
 						},
 						{
 							loader: 'sass-loader'
