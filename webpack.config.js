@@ -1,17 +1,18 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = [
 
 	{
 		mode: 'production',
 		entry: {
-			front: path.join(__dirname, 'resources', 'javascript', 'index.js'),
+			app: path.join(__dirname, 'static', 'javascript', 'index.js'),
 		},
 		watch: true,
 		output: {
-			path: __dirname + '/dist/',
-			publicPath: '/dist/',
+			path: __dirname + '/public/javascript/',
+			publicPath: '/javascript/',
 			filename: "[name].js",
 		},
 		module: {
@@ -19,7 +20,7 @@ module.exports = [
 				{
 					test: /.jsx?$/,
 					include: [
-						path.resolve(__dirname, 'resources', 'javascript'),
+						path.resolve(__dirname, 'static', 'javascript'),
 					],
 					exclude: [
 						path.resolve(__dirname, 'node_modules'),
@@ -40,11 +41,23 @@ module.exports = [
 		resolve: {
 			extensions: ['.json', '.js', '.jsx']
 		},
+		plugins: [
+			new webpack.ProvidePlugin({
+				$: 'jquery',
+				axios: 'axios',
+				jQuery: 'jquery',
+			}),
+		],
 		devtool: 'source-map',
 		optimization: {
+			minimize: true,
 			minimizer: [
-				new UglifyJsPlugin({
-					extractComments: true,
+				new TerserPlugin({
+					parallel: true,
+					sourceMap: true,
+					terserOptions: {
+						ecma: 6,
+					},
 				}),
 			],
 		},
@@ -53,11 +66,11 @@ module.exports = [
 	{
 		mode: 'development',
 		entry: [
-			path.join(__dirname, 'resources', 'scss', 'screen.scss'),
+			path.join(__dirname, 'static', 'scss', 'screen.scss'),
 		],
 		output: {
-			path: __dirname + '/dist/',
-			publicPath: '/dist/',
+			path: __dirname + '/public/css/',
+			publicPath: '/css/',
 			filename: "[name].css",
 		},
 		module: {

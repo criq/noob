@@ -1,0 +1,5 @@
+baseUrl: http://noob.example.com/
+timezone: Europe/Prague
+slim:
+  mode: development
+  debug: true

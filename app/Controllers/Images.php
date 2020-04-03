@@ -2,6 +2,6 @@
 
 namespace App\Controllers;
 
-class Images extends \Katu\Controllers\Images {
-
+class Images extends \Katu\Controllers\Presets\Images
+{
 }
