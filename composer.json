@@ -16,5 +16,10 @@
 		"psr-4": {
 			"App\\": "./app/"
 		}
+	},
+	"scripts": {
+		"post-create-project-cmd": [
+			"npm i"
+		]
 	}
 }
