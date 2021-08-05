@@ -1,5 +1,4 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = [
@@ -26,15 +25,6 @@ module.exports = [
 						path.resolve(__dirname, 'node_modules'),
 					],
 					loader: 'babel-loader',
-					query: {
-						presets: [
-							["@babel/env", {
-								"targets": {
-									"browsers": "last 2 chrome versions"
-								}
-							}],
-						],
-					},
 				},
 			],
 		},
@@ -49,22 +39,10 @@ module.exports = [
 			}),
 		],
 		devtool: 'source-map',
-		optimization: {
-			minimize: true,
-			minimizer: [
-				new TerserPlugin({
-					parallel: true,
-					sourceMap: true,
-					terserOptions: {
-						ecma: 6,
-					},
-				}),
-			],
-		},
 	},
 
 	{
-		mode: 'development',
+		mode: 'production',
 		entry: [
 			path.join(__dirname, 'static', 'scss', 'screen.scss'),
 		],
@@ -85,16 +63,16 @@ module.exports = [
 							}
 						},
 						{
-							loader: 'extract-loader'
+							loader: 'extract-loader',
 						},
 						{
-							loader: 'css-loader?-url'
+							loader: 'css-loader',
 						},
 						{
 							loader: 'postcss-loader',
 						},
 						{
-							loader: 'sass-loader'
+							loader: 'sass-loader',
 						},
 					],
 				},
